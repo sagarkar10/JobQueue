@@ -1,0 +1,14 @@
+{
+    'image':'ubuntu',
+    'cmd':['ls','-l'],
+    'env':
+        {
+            'my_env':'testing',
+            'your_env':'prod'
+        },
+    'res_req':
+        {
+            'cpu':'something',
+            'memory':'another thing'
+        }
+}
