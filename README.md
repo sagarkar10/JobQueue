@@ -1,6 +1,6 @@
 @author Sagar Kar
 
-# A RabbitMq based job queying system to run docker as jobs.
+## A RabbitMq based job queying system to run docker as jobs.
 
 Todo:
 - [x] Make the function to passs messages
@@ -24,6 +24,7 @@ Remarks:
 3. Difficulty in the Popen Output. Pretty nasty.
 
 File Structure:
+
     .
     ├── job_desc (all sample job description holds here)
     │   ├── job_desc_1.json
@@ -34,8 +35,8 @@ File Structure:
     └── scripts (the fileterd scripts)
         ├── cpu_usage.sh
         ├── mem_check.sh
-        ├── receive.py (**worker**)
-        └── send.py (**client**)
+        ├── receive.py (worker)
+        └── send.py (client)
 
 
 # Project Description:
