@@ -6,11 +6,13 @@ Todo:
 - [x] Make the function to passs messages
 - [x] Make the docker command take basic arguments and run
 - [x] Make the entire pipeline work
-- [ ] Pretty print the output from PIPE
+- [x] Pretty print the output from PIPE
 - [x] Make the MEMORY requirement check
 - [ ] Make the CPU requirement check
+- [ ] Use argparse for both files
+- [ ] Use -d as an arg to `receive.py` 
 - [ ] Make sure about the CPU and CMD examples
-- [ ] Make the process work with decoding the '\n' as arbitary blank symbol from pipe.
+- [x] Make the process work with decoding the '\n' as arbitary blank symbol from pipe.
 - [ ] Remove Dependency from shlex
 
 Requirements:
@@ -22,7 +24,7 @@ Remarks:
 1. Learned about RabbitMQ
 2. Made the docker run work wihout docker compose and understood the underying concept
 3. Difficulty in the Popen Output. Pretty nasty.
-
+4. The `-t` arg in `docker run` caussed the output formatting mess.
 File Structure:
 
     .

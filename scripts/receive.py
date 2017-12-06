@@ -54,7 +54,7 @@ def generate_cmd(job_description):
     
     if 'env' in job_description.keys():
         command = command + env_str(job_description['env'])
-    command =command+ " -i -t "+job_description['image']+" /bin/bash -c \""+ str(' '.join(e for e in job_description['cmd']))+"\" " 
+    command =command+ " -i "+job_description['image']+" /bin/bash -c \""+ str(' '.join(e for e in job_description['cmd']))+"\" " 
     return command
 
 def is_mem_available(r_mem_kb, buffer_kb=100000):
@@ -76,11 +76,11 @@ channel.queue_declare(queue='tasks')
 def callback(ch, method, properties, body):
     job_desc = eval(body.decode("utf-8"))
     print(" [x] Job description:")
-    pprint.pprint(job_desc)
     command = generate_cmd(job_desc)
+    print(command)
     if command:
         run_command(command)
-        print()
+#         print()
     print("Finished...")
 
 channel.basic_consume(callback,

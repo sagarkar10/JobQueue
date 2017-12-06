@@ -1,6 +1,6 @@
 {
     'image':'ubuntu',
-    'cmd':['ls','-l'],
+    'cmd':['env'],
     'env':
         {
             'my_env':'testing',
@@ -9,6 +9,6 @@
     'res_req':
         {
             'cpu':'something',
-            'memory':'another thing'
+            'memory':10000
         }
 }
