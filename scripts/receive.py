@@ -4,6 +4,11 @@ import shlex
 import subprocess
 import re
 import pprint
+import argparse
+
+parser = argparse.ArgumentParser('Arguments for The receive.py')
+parser.add_argument('-d','--deamonize', help='Detach the job dockers to background and return the ID', action='store_true', dest='is_daemon')
+args =  parser.parse_args()
 
 def run_command(command):
     try:
@@ -26,8 +31,14 @@ def env_str(env_dic):
         env_string =env_string+" --env "+x+"="+y 
     return env_string.strip()
 
-def generate_cmd(job_description):
-    command = 'docker run '
+def generate_cmd(job_description,is_daemon=True):
+
+    if is_daemon:
+        print("The receiving dockers would be daemonised and the Container ID would be returned")
+        command = 'docker run -d '
+    else:
+        command = 'docker run '
+
     req_keys = ['image', 'cmd']
     mem_req = None
     invalid = False
@@ -68,15 +79,17 @@ def is_mem_available(r_mem_kb, buffer_kb=100000):
     else:
         return False
 
+is_daemon = args.is_daemon
 connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
 channel = connection.channel()
 
 channel.queue_declare(queue='tasks')
 
 def callback(ch, method, properties, body):
+    global is_daemon
     job_desc = eval(body.decode("utf-8"))
     print(" [x] Job description:")
-    command = generate_cmd(job_desc)
+    command = generate_cmd(job_desc, is_daemon)
     print(command)
     if command:
         run_command(command)

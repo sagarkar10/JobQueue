@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 import pika
-import sys
+import argparse
 
-job_description =''
+parser = argparse.ArgumentParser()
 
-if len(sys.argv)<2:
-    print("Please Specify the job descriptor json file to run as argument to this script.")
-    exit(1)
-else:
-    job_description = open(sys.argv[1],'r').read()
+parser.add_argument('-f','--file', action='store',
+                    dest='file_name',required=True,
+                    help='Specify the job descriptor json file to run as argument to this script.')
+args=parser.parse_args()
+job_description = open(args.file_name,'r').read()
 
 connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
 channel = connection.channel()
