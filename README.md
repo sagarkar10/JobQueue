@@ -13,7 +13,7 @@ Todo:
 - [x] Use -d as an arg to `receive.py` 
 - [ ] Make sure about the CPU and CMD examples
 - [x] Make the process work with decoding the '\n' as arbitary blank symbol from pipe.
-- [ ] Make the messages duraple and stay across restarts.
+- [ ] Make the messages durable and stay across restarts.
 
 Requirements:
 -python3
